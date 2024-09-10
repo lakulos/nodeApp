@@ -16,7 +16,7 @@ jobs:
           client-id: a9d4b7d1-af8d-47dc-b1ff-cbcd21112360
           tenant-id: 44e0fe4b-405f-4678-bcb4-a6063b67f6b3
           subscription-id: 7f112840-74e8-45d2-8eb8-4d4f4248f2ca
-          auth-type: SERVICE_PRINCIPLE
+          auth-type: SERVICE_PRINCIPAL
           
       - name: Azure Container Registry Login
         uses: Azure/docker-login@v1
