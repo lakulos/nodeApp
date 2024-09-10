@@ -12,10 +12,7 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v2.1.0
         with:
-          client-id: ${{ secrets.CLIENT_ID }}
-          tenant-id: ${{ secrets.TEN_ID }}
-          subscription-id: ${{ secrets.SUB_ID }}
-          auth-type: SERVICE_PRINCIPAL
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: Azure Container Registry Login
         uses: Azure/docker-login@v1
