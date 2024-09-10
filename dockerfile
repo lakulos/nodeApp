@@ -18,7 +18,7 @@ ENV APP_PORT=4000 \
     POSTGRES_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/test" \
     I18N_FALLBACK_LANGUAGE=en
 
-COPY ./nodeapp /home/napp
+COPY . /home/napp
 
 RUN npm cache clean --force
 RUN npm install
