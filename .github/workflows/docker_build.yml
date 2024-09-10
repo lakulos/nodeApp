@@ -12,8 +12,8 @@ jobs:
       - name: Docker Login
         uses: docker/login-action@v3.3.0
         with:
-          username: ${{ USER_ID }}
-          password: ${{ SECRET_ID }}
+          username: ${{ secrets.USER_ID }}
+          password: ${{ secrets.SECRET_ID }}
 
       - name: build_image
         run: |
