@@ -1,0 +1,10 @@
+model Role {
+  id        String     @id @default(uuid())
+  name      String
+  alias     String
+  deletedAt DateTime?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  users     User[]
+}

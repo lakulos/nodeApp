@@ -1,0 +1,18 @@
+{
+  "NOT_EMPTY": "{property} cannot be empty",
+  "REQUIRED": "{property} is required",
+  "MIN": "{property} must be at least {constraints.0} characters long",
+  "MAX": "{property} cannot be longer than {constraints.0} characters",
+  "LENGTH": "{property} must be at least {constraints.0} characters long but no longer than {constraints.1} characters",
+  "STRING": "{property} must be a string",
+  "NUMBER": "{property} must be a number",
+  "INTEGER": "{property} must be an integer",
+  "ARRAY": "{property} must be an array",
+  "OBJECT": "{property} must be an object",
+  "DATE": "{property} must be a date",
+  "BOOLEAN": "{property} must be a boolean",
+  "EMAIL": "{property} must be a valid email address",
+  "ALPHANUMERIC": "{property} must contain only letters and numbers",
+  "PASSWORD_COMPLEXITY": "Password must contain at least 1 lowercase letter, 1 uppercase letter, and 1 number",
+  "PHONE_NUMBER": "{property} must be a valid phone number"
+}

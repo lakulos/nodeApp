@@ -1,0 +1,10 @@
+model Session {
+  id        String  @id @default(uuid())
+  userId    String 
+  token     String  @unique
+  isRevoked Boolean @default(false)
+  expiresAt DateTime?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}

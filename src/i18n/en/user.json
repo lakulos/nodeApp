@@ -1,0 +1,13 @@
+{
+  "INVALID_CREDENTIALS": "Invalid email or password credentials",
+  "ACCOUNT_VERIFICATION_NEEDED": "Account verification needed",
+  "NOT_FOUND": "User not found",
+  "LOGOUT_SUCCESS": "Logout successfully",
+  "LOGOUT_FAILED": "Logout failed",
+  "EMAIL_NOT_FOUND": "The provided email does not exist in our database, please check and resubmit.",
+  "EMAIL_ALREADY_VERIFIED": "User has already verified email",
+  "EMAIL_NOT_VERIFIED": "User has not verified email",
+  "TWO_FACTOR_ALREADY_ENABLED": "Two factor authentication is already enabled",
+  "TWO_FACTOR_ALREADY_DISABLED": "Two factor authentication is already disabled",
+  "USER_NOT_FOUND": "User not found"
+}

@@ -1,0 +1,46 @@
+datasource db {
+    provider = "postgres"
+    url      = env("POSTGRES_DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    previewFeatures = []
+}
+
+model User {
+  id          String     @id @default(uuid())
+  name        String
+  email       String     @unique
+  phoneNumber String     @unique
+  password    String
+  roleId      String?
+  lastLoginAt DateTime?
+  deletedAt   DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  role        Role?       @relation(fields: [roleId], references: [id])
+  Sessions    Session[]
+}
+model Role {
+  id        String     @id @default(uuid())
+  name      String
+  alias     String
+  deletedAt DateTime?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  users     User[]
+}
+model Session {
+  id        String  @id @default(uuid())
+  userId    String 
+  token     String  @unique
+  isRevoked Boolean @default(false)
+  expiresAt DateTime?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
