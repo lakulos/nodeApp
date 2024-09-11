@@ -22,6 +22,6 @@ jobs:
       - name: build_image
         run: |
                 docker build -t nodeapp .
-                docker tag nodeapp:latest lakulos/nodeapprepo/jscriptimg:v2
-                docker push lakulos/nodeapprepo/jscriptimg:v2
+                docker tag nodeapp:latest lakulos/nodeapprepo:jscriptimg
+                docker push lakulos/nodeapprepo:jscriptimg
     
