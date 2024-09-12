@@ -15,7 +15,6 @@ jobs:
           ssh-private-key: ${{ secrets.AZURE_VM_SSH_PRIVATE_KEY }}
 
       - name: login to Azure VM
-        #run: ssh -i StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }}
         run: ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }}
 
 
