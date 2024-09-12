@@ -1,6 +1,6 @@
-name: docker_build_ACR
+name: docker_build_VM
 
-on: 
+on: workflow_dispatch
 
 permissions:
   id-token: write
