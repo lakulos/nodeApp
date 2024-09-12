@@ -8,33 +8,24 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
-          
+
       - name: Set up SSH agent
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.AZURE_VM_SSH_PRIVATE_KEY }}
 
-      - name: login to Azure VM
-        #run: ssh -i StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }}
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }} << EOF EOF
-
-
-    pull-from-docker:
-      runs-on: ubuntu-latest
-      needs:  
-           SSH-to-azureVM
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.7
-
-      - name: Docker Login
-        uses: docker/login-action@v3.3.0
-        with:
-            username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
-            password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-
-      - name: docker pull
+      # Deploy Docker container to Azure VM
+      - name: Deploy Docker container to Azure VM
         run: |
-              docker pull lakulos/nodeapprepo:jscriptimg
-              docker run -d --name node-con -p 4000:4000 nodeapprepo:jscriptimg
+          ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }} << EOF
+          # Login to Docker registry if needed
+          echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REGISTRY_USERNAME }}" --password-stdin
+
+          # Pull the Docker image
+          docker pull lakulos/nodeapprepo:jscriptimg
+          docker run -d --name node-con -p 4000:4000 nodeapprepo:jscriptimg
+
+          # Optionally clean up old Docker images
+          docker image prune -f
+          EOF
         
