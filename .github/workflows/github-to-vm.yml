@@ -34,5 +34,5 @@ jobs:
 
       - name: docker pull
         run: |
-              sudo docker pull lakulos/nodeapprepo:dockimg
-              sudo docker run -d --name node-conntainer -p 4000:4000 lakulos/nodeapprepo:dockimg
+              sudo docker pull lakulos/nodeapprepo:jscriptimg
+              sudo docker run -d --name node-conntainer -p 4000:4000 lakulos/nodeapprepo:jscriptimg
