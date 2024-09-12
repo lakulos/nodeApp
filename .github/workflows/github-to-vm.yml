@@ -33,6 +33,6 @@ jobs:
       - name: docker pull
         run: |
               echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REGISTRY_USERNAME }}" --password-stdin
-              docker pull lakulos/nodeapprepo
-              docker run -d --name node-con -p 4000:4000 nodeapprepo:nodeapp
+              docker pull lakulos/nodeapprepo:jscriptimg
+              docker run -d --name node-con -p 4000:4000 nodeapprepo:jscriptimg
         
