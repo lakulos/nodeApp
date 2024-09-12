@@ -23,7 +23,7 @@ jobs:
 
           # Pull the Docker image
           sudo docker pull lakulos/nodeapprepo:jscriptimg
-          sudo docker run -d --name node-con -p 4000:4000 nodeapprepo:jscriptimg
+          sudo docker run -d --name node-con -p 4000:4000 lakulos/nodeapprepo:jscriptimg
 
           # Optionally clean up old Docker images
           sudo docker image prune -f
