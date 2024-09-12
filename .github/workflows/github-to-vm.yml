@@ -7,21 +7,30 @@ permissions:
   contents: read
 
 jobs:
-    build-to-docker:
+    SSH-to-azureVM:
       runs-on: ubuntu-latest
       steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
           
-      - name: Azure Container Registry Login
-        uses: Azure/docker-login@v1
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.7.0
         with:
-            username: ${{ secrets.ACR_USERNAME }}
-            password: ${{ secrets.ACR_PASS }}
-            login-server: dockercr01.azurecr.io
+          ssh-private-key: ${{ secrets.AZURE_VM_SSH_PRIVATE_KEY }}
 
-      - name: build_image
+      - name: login to Azure VM
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_VM_USERNAME }}@${{ secrets.AZURE_VM_IP }}
+
+
+    pull-from-docker:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: docker pull
         run: |
-                docker build -t nodeapp .
-                docker tag nodeapp:latest dockercr01.azurecr.io/dockerimg:v1
-                docker push dockercr01.azurecr.io/dockerimg:v1
+              echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REGISTRY_USERNAME }}" --password-stdin
+              docker pull lakulos/nodeapprepo
+              docker run -d --name node-con -p 4000:4000 nodeapprepo:nodeapp
+        
